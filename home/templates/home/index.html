@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Hello World!  New Index Page Home</h1>
+  <button class="btn btn-primary">Test Bootstrap</button>
+  <h2>Number of drinks: {{ num_drinks }}</h2>
+
+  <p>Current user is: {{ user }}</p>
+  <a href="{% url 'logout' %}">Logout</a>
+  
+{% endblock content %}
+  
+
+
+

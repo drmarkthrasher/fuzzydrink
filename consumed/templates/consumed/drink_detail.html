@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Drink: {{ drink.description }}</h1>  
+  <p>Volume: {{ drink.volume }}</p>
+  <p>Alcohol: {{ drink.alcohol_content }}</p>
+  <p>Date: {{ drink.consumption_date }}</p>
+  <p>Time: {{ drink.consumption_time }}</p>
+  <p>Favorite: {{ drink.favorite }}</p>
+
+
+{% endblock content %}
+  

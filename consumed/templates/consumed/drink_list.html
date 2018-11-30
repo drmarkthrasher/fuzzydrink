@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  <h1>Drink List</h1>  
+  
+  {% if drink_list %}
+    <ul>
+      
+      {% for drink in drink_list %}
+        <li>
+          <a href="{{ drink.get_absolute_url }}">{{ drink.description }}</a> 
+        </li>
+      {% endfor %}
+        
+    </ul>
+  {% else %}
+    <p>There are no drinks in the database!</p>
+  {% endif %}
+    
+
+
+
+
+{% endblock content %}
+  

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+  {% load static %}
+
+  <title>Fuzzy Drink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <div class="container">
+      <nav class="navbar navbar-default navbar-static-top">
+          <ul class="nav navbar-nav">
+              <a href="{% url 'home' %}">Home</a>
+              <a href="{% url 'drinks' %}">Drinks</a>
+          </ul>
+          {% if user.is_authenticated %}
+          User: {{ user.get_username }}
+          <a href="{% url 'logout'%}?next={{request.path}}">Logout</a> 
+          {% else %}
+          <a href="{% url 'login'%}?next={{request.path}}">Login</a> 
+          {% endif %} 
+      </nav>
+
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block pagination %}
+      {% if is_paginated %}
+        <div class="pagination">
+          <span class="page-links">
+            {% if page_obj.has_previous %}
+              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="page-current">
+              <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+            </span>
+            {% if page_obj.has_next %}
+              <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
+{% endblock %} 
+
+
+
+  </div>
+  
+    
+</body>
+</html>
