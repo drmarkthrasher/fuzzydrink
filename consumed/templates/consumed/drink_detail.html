@@ -2,13 +2,20 @@
 
 
 {% block content %}
-  <h1>Drink: {{ drink.description }}</h1>  
-  <p>Volume: {{ drink.volume }}</p>
-  <p>Alcohol: {{ drink.alcohol_content }}</p>
-  <p>Date: {{ drink.consumption_date }}</p>
-  <p>Time: {{ drink.consumption_time }}</p>
-  <p>Favorite: {{ drink.favorite }}</p>
+  <div >
+      <h1>Drink: {{ drink.description }}</h1>  
+      <p>Volume: {{ drink.volume }}</p>
+      <p>Alcohol: {{ drink.alcohol_content }}</p>
+      <p>Date: {{ drink.consumption_date }}</p>
+      <p>Time: {{ drink.consumption_time }}</p>
+      <p>Favorite: {{ drink.favorite }}</p>
 
+  </div>
+  
+  <div>
+    <p><a class='btn btn-warning' href="{{ drink.get_update_url }}">Update Drink</a></p>
+    <p><a class='btn btn-danger' href="{{ drink.get_delete_url }}">Delete</a></p>
+  </div>
 
 {% endblock content %}
   

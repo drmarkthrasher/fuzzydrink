@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 class Drink(models.Model):
@@ -15,7 +16,7 @@ class Drink(models.Model):
     choices=DRINK_TYPE,
     default='b'
   )
-  description = models.TextField()
+  description = models.CharField(max_length=255)
   volume = models.DecimalField(default=0, decimal_places=1, max_digits=4, 
     help_text = "Ounces of drink")
   alcohol_content = models.DecimalField(default=0, decimal_places=1, max_digits=4,
@@ -30,7 +31,14 @@ class Drink(models.Model):
 
   def get_absolute_url(self):
         """Returns the url to access a particular book instance."""
-        return reverse('drink-detail', args=[str(self.id)])
+        # return reverse('drink-detail', args=[str(self.id)])
+        return reverse('drink-detail', kwargs={'pk': self.pk})
+
+  def get_update_url(self):
+        return reverse('update', kwargs={'pk': self.pk})
+
+  def	get_delete_url(self):
+        return reverse('delete', kwargs={'pk': self.pk})
 
   def __str__(self):
     return self.description
