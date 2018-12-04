@@ -1,22 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'consumed/consumed_base.html' %}
 
 
 
 {% block content %}
 
 <!-- This is the jquery I added for datepicker -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-      crossorigin="anonymous">
-</script>
-<script>
-    $(document).ready(function() {
-       $('#id_consumption_date').datepicker({firstDay: 1,
-          dateFormat: "mm/dd/yy",
-          });
-    });
-</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#id_consumption_date" ).datepicker();
+  } );
+  </script>
+
+
+
+
 
 <!-- This is the jquery I added for timepicker -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">

@@ -13,15 +13,21 @@ class DrinkListView(LoginRequiredMixin, ListView):
   model = Drink
   #The default template name will be drink_list.html.  This can be changed if desired.
   #Default template variable will be drink_list
-
   paginate_by = 10
+
+  # typical way to do query if ever needed.
+  def get_queryset(self):
+    return Drink.objects.all().filter(description__contains='')
+
 
 
 class DrinkDetailView(LoginRequiredMixin, DetailView):
   model = Drink
-  template_name = 'consumed/drink_detail.html'
+  #defaults to drink_detail.html.  Can be changed if desired.
+  # template_name = 'consumed/drink_detail.html'
+  # default variable in template is drink.  
 
-class DrinkCreateView(CreateView):
+class DrinkCreateView(LoginRequiredMixin, CreateView):
   form_class = DrinkForm
   model = Drink
 
@@ -35,7 +41,6 @@ class DrinkUpdateView(LoginRequiredMixin, UpdateView):
   # fields = ('drink_type','description','volume','alcohol_content','consumption_time',
   #   'consumption_date', 'favorite' )
   model = Drink
-  print("I am just trying to see how the print works!")
   
 
   def form_valid(self, form):

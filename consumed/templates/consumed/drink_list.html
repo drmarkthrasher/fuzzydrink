@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'consumed/consumed_base.html' %}
 
 
 
@@ -10,7 +10,8 @@
       
       {% for drink in drink_list %}
         <li>
-          <a href="{{ drink.get_absolute_url }}">{{ drink.description }}</a> 
+          <a href="{{ drink.get_absolute_url }}">{{ drink.description }}</a>
+          <p>This was consumed on {{ drink.consumption_date }} at {{ drink.consumption_time}}</p>
         </li>
       {% endfor %}
         
@@ -20,7 +21,7 @@
   {% endif %}
     
 
-
+  
 
 
 {% endblock content %}

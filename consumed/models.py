@@ -35,10 +35,10 @@ class Drink(models.Model):
         return reverse('drink-detail', kwargs={'pk': self.pk})
 
   def get_update_url(self):
-        return reverse('update', kwargs={'pk': self.pk})
+        return reverse('drink_update', kwargs={'pk': self.pk})
 
   def	get_delete_url(self):
-        return reverse('delete', kwargs={'pk': self.pk})
+        return reverse('drink_delete', kwargs={'pk': self.pk})
 
   def __str__(self):
     return self.description
