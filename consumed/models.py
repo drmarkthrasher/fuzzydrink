@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 
@@ -11,15 +12,16 @@ class Drink(models.Model):
     ('c', 'Cocktail')
   )
 
+  created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='drinks')
   drink_type = models.CharField(
     max_length=1,
     choices=DRINK_TYPE,
     default='b'
   )
   description = models.CharField(max_length=255)
-  volume = models.DecimalField(default=0, decimal_places=1, max_digits=4, 
+  volume = models.DecimalField( decimal_places=1, max_digits=4, 
     help_text = "Ounces of drink")
-  alcohol_content = models.DecimalField(default=0, decimal_places=1, max_digits=4,
+  alcohol_content = models.DecimalField(decimal_places=1, max_digits=4,
     help_text="This is half the proof")
   consumption_date = models.DateField()
   consumption_time = models.TimeField()

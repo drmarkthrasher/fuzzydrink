@@ -7,6 +7,7 @@ from .forms import DrinkForm
 from django.views.generic import (View, TemplateView, ListView, DetailView,
                                     CreateView, UpdateView, DeleteView)
 
+
 from .models import Drink
 
 class DrinkListView(LoginRequiredMixin, ListView):
@@ -16,9 +17,10 @@ class DrinkListView(LoginRequiredMixin, ListView):
   paginate_by = 10
 
   # typical way to do query if ever needed.
-  def get_queryset(self):
-    return Drink.objects.all().filter(description__contains='')
-
+  def get_queryset(self, **kwargs):
+    return Drink.objects.all().filter(created_by=self.request.user)
+    
+  
 
 
 class DrinkDetailView(LoginRequiredMixin, DetailView):
@@ -31,6 +33,15 @@ class DrinkCreateView(LoginRequiredMixin, CreateView):
   form_class = DrinkForm
   model = Drink
 
+  def form_valid(self, form):
+    obj = form.save(commit = False)
+    obj.created_by = self.request.user
+    obj.save()
+    return super().form_valid(form)
+
+  def form_invalid(self, form):
+    return self.render_to_response(self.get_context_data(form=form))
+
 
 
 class DrinkUpdateView(LoginRequiredMixin, UpdateView):
@@ -42,7 +53,6 @@ class DrinkUpdateView(LoginRequiredMixin, UpdateView):
   #   'consumption_date', 'favorite' )
   model = Drink
   
-
   def form_valid(self, form):
     form.save()
     return super().form_valid(form)
