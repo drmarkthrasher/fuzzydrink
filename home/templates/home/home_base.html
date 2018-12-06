@@ -4,126 +4,33 @@
 <!-- django needs this to get static files on html pages -->
 {% load staticfiles %}
 <html>
+
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% include 'head.html' %}
 
+<!-- Custom css -->
+<link rel="stylesheet" href="{% static 'css/consumed.css'%}">
 
-  <!-- Bootstrap CDN here. -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-
-  <!-- jquery here -->
-  <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
-  <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
-  <script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/js/bootstrap-datetimepicker.min.js"></script>
-
-  <!-- js needed with Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
-
-  <!-- Medium style editor (nice editor for blogs) -->
-  <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-  
-  <!-- Custom css -->
-  <link rel="stylesheet" href="{% static 'css/home.css'%}">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-
-  
-
-  <title>Fuzzy Drink</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
-
 
 <body>
   
-      
-    <!-- Navbar -->
-      <!-- <nav class="navbar navbar-default techfont" >
-          <div class="container">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'drinks' %}">Drinks</a></li>
-                    <li><a href="{% url 'drink_create' %}">Create</a></li>
-                </ul>
-
-                <ul class=" nav navbar-nav">
-                    
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <p><a class="dropdown-item" href="#">Action</a></p>
-                          <p><a class="dropdown-item" href="#">Another action</a></p>
-                          <div class="dropdown-divider"></div>
-                          <p><a class="dropdown-item" href="#">Something else here</a></p>
-                        </div>
-                      
-                </ul>
-      
-                <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
-                        <li><a>User: {{ user.get_username }}</a></li>
-                        <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'login'%}?next={{request.path}}"><span class='glyphicon glyphicon-user'></span></a></li>
-                    {% endif %} 
-                
-                </ul>   
-          </div>
-      </nav> -->
-
-
-
-
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'home' %}">Fuzzy Drink</a>
-            <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'drinks' %}">My Drinks <span class="sr-only">(current)</span></a>
-                </li>
-            
-              </ul>
-            </div>
-      </nav>
+  {% include 'navbar.html' %}
 
 
       
   <div class="container">    
-
 
     {% block content %}
     {% endblock content %}
 
     {% include 'pagination.html' %}
 
-
   </div>
 
 
 
-  <div class="bottomnavbar">
-      <a href="{% url 'home' %}" >Home</a>
-      <a href="{% url 'drinks' %}">Drinks</a>
-      <a href="#contact">Gauge</a>
-      <a href="#contact">Chart</a>
-      <a href="#contact">Finder</a>
-  </div>
+ {% include 'bottomnavbar.html' %}
   
     
 </body>

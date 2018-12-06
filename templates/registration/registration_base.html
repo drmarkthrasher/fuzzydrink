@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <!-- django needs this to get static files on html pages -->
 {% load staticfiles %}
@@ -8,17 +7,15 @@
 <head>
 {% include 'head.html' %}
 
-<!-- Custom css for this app -->
+<!-- Custom css -->
 <link rel="stylesheet" href="{% static 'css/consumed.css'%}">
 
 </head>
 
 <body>
-
   
   {% include 'navbar.html' %}
 
-  {% include 'topnavbar.html' %}
 
       
   <div class="container">    
@@ -32,7 +29,7 @@
 
 
 
-  {% include 'bottomnavbar.html' %}
+ {% include 'bottomnavbar.html' %}
   
     
 </body>

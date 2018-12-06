@@ -25,7 +25,8 @@ SECRET_KEY = 'l!%0tiojekail8h)bmz0*^ye4p+tl@1bhc5icpk7u7j6&lz#wj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#this allows other computers on home wifi to run fuzzydrink.
+ALLOWED_HOSTS = ['192.168.1.126', 'localhost']
 
 
 # Application definition
@@ -127,6 +128,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'FuzzyDrink/static/')
+]
+
+STATIC_ROOT= os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 
 #This tells where to go after successful login
